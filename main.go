@@ -1,9 +1,17 @@
 package main
 
 import (
-	"github.com/bradcareer/pokedex"
+	"time"
+
+	"https://github.com/bradcareer/pokedex"
 )
 
 func main() {
-	fmt.Println("hello world")
+	pokeClient := pokeapi.NewClient(5*time.Second, time.Minute*5)
+	cfg := &config{
+		commands:      getCommands(),
+		pokeapiClient: pokeClient,
+	}
+
+	startRepl(cfg)
 }
